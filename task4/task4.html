@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Geometry Calculator</title>
+    <style>
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #13000090, #02344b8c); /* Light gradient */
+        color: #333333; /* Dark text for readability */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    header {
+        background: #f8f9fa; /* Light background */
+        color: #06767e; /* Teal-like header color */
+        padding: 20px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    }
+    
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    .section {
+        background: #04327c65; /* Pure white background for cards */
+        border: 2px solid #000000; /* Teal border */
+        border-radius: 80px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 123, 131, 0.3);
+    }
+    
+    .image {
+        height: 200px;
+        width: auto;
+        border-radius: 40px;
+    }
+    
+    h2 {
+        color: #5ebed3; /* Match the header color */
+        margin-bottom: 15px;
+    }
+    
+    input {
+        padding: 10px;
+        margin: 8px 0;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 80%;
+        outline: none;
+        background: #f9f9f9; /* Light input background */
+        color: #333;
+    }
+    
+    input:focus {
+        border-color: #007b83;
+    }
+    
+    button {
+        background: #de8806; /* Teal button */
+        color: #ffffff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+    
+    button:hover {
+        background: #005f66; /* Darker teal */
+        color: #ffffff;
+    }
+    
+    .formula {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555555; /* Slightly darker text */
+        font-style: italic;
+    }
+    
+    .result {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333333; /* Dark text for contrast */
+    }
+</style>    
+    <script src="https://kit.fontawesome.com/c4cb78a369.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+    Geometry Calculator
+</header>
+
+<div class="container">
+    <!-- Cube Section -->
+    <div class="section">
+        <img class="image" src="./assets/cube.jpg" alt="Cube">
+        <h2>Cube</h2>
+        <input type="number" id="cubeSide" placeholder="Side Length" />
+        <button onclick="calculateCube()">Calculate</button>
+        <div class="formula" id="cubeVolumeFormula"> </div>
+        <div class="result" id="cubeResult">Formula<br> Volume = side³<br>Surface Area = 6 * side²</div>
+    </div>
+
+    <!-- Sphere Section -->
+    <div class="section">
+        <img class="image" src="./assets/sphere.jpg" alt="Sphere">
+        <h2>Sphere</h2>
+        <input type="number" id="sphereRadius" placeholder="Radius" />
+        <button onclick="calculateSphere()">Calculate</button>
+        <div class="formula" id="sphereVolumeFormula"></div>
+        <div class="result" id="sphereResult">Formula<br> Volume = 4/3 * π * radius³<br>Surface Area = 4 * π * radius²</div>
+    </div>
+
+    <!-- Cylinder Section -->
+    <div class="section">
+        <img class="image" src="./assets/cyl.jpg" alt="Cylinder">
+        <h2>Cylinder</h2>
+        <input type="number" id="cylinderRadius" placeholder="Radius" />
+        <input type="number" id="cylinderHeight" placeholder="Height" />
+        <button onclick="calculateCylinder()">Calculate</button>
+        <div class="formula" id="cylinderVolumeFormula"></div>
+        <div class="result" id="cylinderResult">Formula<br> Volume = π * radius² * height<br>Surface Area = 2 * π * radius * (radius + height)</div>
+    </div>
+
+    <!-- Cone Section -->
+    <div class="section">
+        <img class="image" src="./assets/cone.jpg" alt="Cone">
+        <h2>Cone</h2>
+        <input type="number" id="coneRadius" placeholder="Radius" />
+        <input type="number" id="coneHeight" placeholder="Height" />
+        <button onclick="calculateCone()">Calculate</button>
+        <div class="formula" id="coneVolumeFormula"></div>
+        <div class="result" id="coneResult">Formula<br> Volume = 1/3 * π * radius² * height<br>Surface Area = π * radius * (radius + slantHeight)</div>
+    </div>
+
+    <!-- Rectangular Prism Section -->
+    <div class="section">
+        <img class="image" src="./assets/recp.jpg" alt="Rectangular">
+        <h2>Rectangular Prism</h2>
+        <input type="number" id="rectPrismLength" placeholder="Length" />
+        <input type="number" id="rectPrismWidth" placeholder="Width" />
+        <input type="number" id="rectPrismHeight" placeholder="Height" />
+        <button onclick="calculateRectPrism()">Calculate</button>
+        <div class="formula" id="rectPrismVolumeFormula"></div>
+        <div class="result" id="rectPrismResult">Formula<br> Volume = length * width * height<br>Surface Area = 2 * (length * width + width * height + height * length)</div>
+    </div>
+
+    <!-- Pyramid Section -->
+    <div class="section">
+        <img class="image" src="./assets/pri.jpg" alt="Pyramid">
+        <h2>Pyramid</h2>
+        <input type="number" id="pyramidBase" placeholder="Base Length" />
+        <input type="number" id="pyramidHeight" placeholder="Height" />
+        <button onclick="calculatePyramid()">Calculate</button>
+        <div class="formula" id="pyramidVolumeFormula"></div>
+        <div class="result" id="pyramidResult">Formula<br> Volume = 1/3 * base² * height<br>Surface Area = base² + 2 * base * slant height</div>
+    </div>
+
+    <!-- Tetrahedron Section -->
+    <div class="section">
+        <img class="image" src="./assets/tetet.jpg" alt="Tetrahedron">
+        <h2>Tetrahedron</h2>
+        <input type="number" id="tetrahedronEdge" placeholder="Edge Length" />
+        <button onclick="calculateTetrahedron()">Calculate</button>
+        <div class="formula" id="tetrahedronVolumeFormula"></div>
+        <div class="result" id="tetrahedronResult">Formula<br> Volume = (edge³) / (6 * √2)</div>
+    </div>
+
+    <!-- Hemisphere Section -->
+    <div class="section">
+        <img class="image" src="./assets/adho.jpg" alt="Hemisphere">
+        <h2>Hemisphere</h2>
+        <input type="number" id="hemisphereRadius" placeholder="Radius" />
+        <button onclick="calculateHemisphere()">Calculate</button>
+        <div class="formula" id="hemisphereVolumeFormula"></div>
+        <div class="result" id="hemisphereResult">Formula<br> Volume = 2/3 * π * radius³<br>Surface Area = 3 * π * radius²</div>
+    </div>
+
+    <!-- Torus Section -->
+    <div class="section">
+        <img class="image" src="./assets/donate.jpg" alt="Torus">
+        <h2>Torus</h2>
+        <input type="number" id="torusRadius" placeholder="Radius" />
+        <input type="number" id="torusTubeRadius" placeholder="Tube Radius" />
+        <button onclick="calculateTorus()">Calculate</button>
+        <div class="formula" id="torusVolumeFormula"></div>
+        <div class="result" id="torusResult">Formula<br> Volume = 2 * π² * radius * tube radius²<br>Surface Area = 4 * π² * radius * tube radius</div>
+    </div>
+</div>
+
+<script src="./calc.js">
+</script>
+
+</body>
+</html>
