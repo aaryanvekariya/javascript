@@ -1,5 +1,5 @@
 /* General Reset */
-body, h1, h2, p, ul {
+body, h1, h2, p, ul, input, button {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,11 +7,12 @@ body, h1, h2, p, ul {
 }
 
 body {
-    background-color: #b1ebd4; 
+    background-color: #d4e976; 
     color: #4a4a4a; 
     line-height: 1.6;
 }
 
+/* Resume Container */
 .resume-container {
     max-width: 800px;
     margin: 20px auto;
@@ -43,18 +44,16 @@ header p a:hover {
     color: #0056b3; 
 }
 
-/* Skills and Projects */
-section {
-    margin-bottom: 20px;
-}
-
+/* Section Titles */
 section h2 {
     border-bottom: 2px solid #0056b3; 
     display: inline-block;
     margin-bottom: 10px;
     font-size: 1.8rem; 
+    color: #0056b3;
 }
 
+/* Lists */
 ul {
     list-style: none;
 }
@@ -66,4 +65,71 @@ ul li {
 
 ul li span {
     color: #6c757d; 
+}
+
+/* Form Styles */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #0056b3;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 1rem;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form textarea {
+    height: 100px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #004085;
+}
+
+/* Button Styles */
+button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004085;
 }
