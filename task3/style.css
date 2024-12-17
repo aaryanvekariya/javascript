@@ -1,0 +1,73 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to Blue Gradient */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.counter-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 30px 50px;
+    transition: all 0.3s ease;
+}
+
+.counter-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.counter-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.counter-display {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #ff6b6b;
+    transition: color 0.3s ease;
+}
+
+.counter-buttons {
+    display: flex;
+    justify-content: space-between; /* Buttons spaced left, center, right */
+    align-items: center;
+}
+
+.counter-buttons .btn {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1; /* Distribute space equally */
+    max-width: 120px;
+}
+
+.counter-buttons .btn:hover {
+    background-color: #6a11cb;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.counter-buttons .btn:active {
+    transform: scale(0.95);
+}
