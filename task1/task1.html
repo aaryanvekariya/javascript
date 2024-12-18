@@ -6,50 +6,53 @@
     <title>Feedback form</title>
 </head>
 
-
-</style>
-
 <body>
     <center>
-<h1>Feedback form</h1>
+        <h1>Feedback form</h1>
+        <hr/>
+        
+        <label for="name">Name:</label><br>
+        <input type="text" id="myName" name="name" required><br>
 
-<hr/>
-    <label for="name">Name:</label><br>
-    <input type="text" id="myName" name="" required="name"><br>
+        <label for="Age">Age</label><br>
+        <input type="number" id="myAge" name="age" required><br>
 
-    <label for="Age">Age</label><br>
-    <input type="number" id="myAge" name="" required="Age"><br>
+        <label for="Div">Div</label><br>
+        <select name="select" id="myDiv">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+        </select><br>
 
-    <label for="mail">Div</label><br>
-    <input type="text" id="myDiv" name="" required="Div"><br>
-    
-    <label for="mail">Email ID:</label><br>
-    <input type="email" id="myMail" name="" required="email"><br>
+        <label for="mail">Email ID:</label><br>
+        <input type="email" id="myMail" name="email" required><br>
 
-    <label for="Rate">
-        Rate US :<select name="select" id="rate">
+        <label for="Rate">Rate US :</label><br>
+        <select name="select" id="rateSelect">
             <option value="1: Very Good">Very Good</option>
             <option value="2: Good">Good</option>
             <option value="3: Mid">Mid</option>
-            <option value="4: poor">poor</option>
-            <option value="5: Wrost">Wrost</option>
-        </select><br>
+            <option value="4: Poor">Poor</option>
+            <option value="5: Worst">Worst</option>
+        </select><br>
 
-    <label for="comment">Comment:</label><br>
-    <textarea type="text" id="myComment" name="" rows="5" cols="50" required="Email"></textarea><br>
-    <br>
+        <label for="comment">Comment:</label><br>
+        <textarea type="text" id="myComment" name="comment" rows="5" cols="50" required></textarea><br>
+        <br>
 
-    <button type="submit" id="myButton" onclick="show()">SUBMIT</button>
-</center>
+        <button type="submit" id="myButton" onclick="show()">SUBMIT</button>
+    </center>
 
-<center>
-<pre>
-    <h1 id="myH1"></h1>
-   
+    <center>
+        <pre>
+            <h1 id="myH1"></h1>
+        </pre>
+    </center>
 
-</pre>
-</center>
-
-    <script src="./main.js"></script>
+    <script src="main.js">
+        
+    </script>
 </body>
 </html>
