@@ -1,0 +1,52 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #6fdb83e9;
+}
+
+/* Styling for the table */
+table {
+    width: 60%; 
+    margin: 50px auto;
+    border-collapse: collapse; 
+    text-align: center;
+    background-color: #ffffff;
+    border: solid;
+    
+}
+
+th, td {
+    border: 1px solid #000; 
+    padding: 12px; 
+    font-size: 1.1rem;
+    border: solid;
+}
+
+th {
+    background-color: #4CAF50; 
+    color: black;
+    font-weight: bold;
+    border: solid;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Light hover effect for rows */
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 30px;
+    font-size: 2rem;
+}
+
+/* Add padding around the page content */
+.content {
+    padding: 20px;
+}

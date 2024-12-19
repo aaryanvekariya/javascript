@@ -1,0 +1,146 @@
+/* General styles */
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #07C8F9, #09A6F3, #0A85ED, #0C63E7, #0D41E1);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    box-sizing: border-box; 
+    overflow: hidden; 
+    text-align: center; 
+}
+
+/* Main container styling */
+.container {
+    background-color: rgba(6, 67, 92, 0.7); 
+    padding: 30px;
+    border-radius: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    max-width: 400px; 
+    width: 90%; 
+    text-align: center; 
+    box-sizing: border-box; 
+    margin: auto;
+    margin-left: 550px;
+}
+
+/* Heading styling */
+h1 {
+    color: #66ebff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Text glow effect */
+    font-size: 24px;
+}
+
+
+p {
+    color: #f6fa06;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+/* Setup section styles */
+#setup {
+    margin-bottom: 30px;
+    font-size: 18px;
+    color: rgb(127, 216, 219);
+    font-weight: bold;
+}
+
+/* Input fields styling */
+input[type="number"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle white border */
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.501); /* Slight background tint */
+    width: 90%; /* Ensure it looks good on smaller screens */
+    max-width: 250px; /* Limit max width for inputs */
+    box-sizing: border-box;
+    color: #4a02ff; /* Text color */
+    font-size: 25px;
+    outline: none; 
+    font-weight: bolder;
+}
+
+/* Button styling */
+button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    width: 160px; /* Consistent button width */
+    max-width: 90%; /* Prevent overflow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Game section styles */
+#game {
+    display: none;
+    margin-top: 20px;
+}
+
+/* Feedback message */
+#feedback {
+    font-size: 18px;
+    color: #d9534f;
+    margin-top: 20px;
+}
+
+/* Message text */
+#message {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff; /* Ensure visibility on the background */
+}
+
+/* Reset button styling */
+#resetButton {
+    margin-top: 20px;
+    background-color: #f44336;
+    border-radius: 25px;
+}
+
+#resetButton:hover {
+    background-color: #e53935;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        border-radius: 30px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    input[type="number"] {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        width: 140px;
+    }
+}
