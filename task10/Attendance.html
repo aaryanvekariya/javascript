@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<body lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Attendance System</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #1d1d1d, #3a3a3a, #7e7a7a, #2e2e2e, #000000);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #50bae0;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+            text-decoration: underline;
+        }
+
+        #webcam-container {
+            margin: 20px auto;
+            border: 6px solid #06e2f6;
+            border-radius: 25px;
+            width: 320px;
+            height: 320px;
+            background: #2e2e2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #label-container {
+            margin-top: 20px;
+            padding: 10px;
+            background: #4cacaf;
+            color: #ffffff;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: left;
+            width: 320px;
+        }
+
+        #result-container {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            width: 320px;
+            display: none;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            margin-top: 30px;
+            background-color: #3eb3be;
+            color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.5s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #d0a121;
+        }
+
+        .success {
+            color: #68c8d8;
+            background-color: #d8eaf0;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .error {
+            color: #e74c3c;
+            background-color: #f2dede;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+</body>
+    
+    <h1>Welcome to the AI Attendance System</h1>
+    <button type="button" onclick="init()">Start Camera</button>
+    <div id="webcam-container">
+        <span style="color: #777;">Camera Loading...</span>
+    </div>
+    <div id="label-container"></div>
+    <div id="result-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script>
+        const URL = "https://teachablemachine.withgoogle.com/models/ma8X6D-vl/";
+
+        let model, webcam, labelContainer, maxPredictions;
+        let isProcessing = false;
+
+        async function init() {
+            try {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
+
+                // Load the model and metadata
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+
+                // Setup webcam
+                const flip = true;
+                webcam = new tmImage.Webcam(320, 320, flip);
+                await webcam.setup();
+                await webcam.play();
+                document.getElementById("webcam-container").innerHTML = '';
+                document.getElementById("webcam-container").appendChild(webcam.canvas);
+
+                labelContainer = document.getElementById("label-container");
+                labelContainer.innerHTML = ''; // Clear existing labels
+                for (let i = 0; i < maxPredictions; i++) {
+                    const labelDiv = document.createElement("div");
+                    labelDiv.className = "label";
+                    labelContainer.appendChild(labelDiv);
+                }
+
+                window.requestAnimationFrame(loop);
+            } catch (error) {
+                alert("Error initializing webcam or model: " + error.message);
+            }
+        }
+
+        async function loop() {
+            if (webcam) {
+                webcam.update();
+                await predict();
+            }
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            if (!model || !webcam) return;
+
+            const prediction = await model.predict(webcam.canvas);
+            let resultContainer = document.getElementById("result-container");
+            resultContainer.style.display = "block";
+
+            for (let i = 0; i < maxPredictions; i++) {
+                const className = prediction[i].className;
+                const probability = prediction[i].probability.toFixed(2);
+
+                labelContainer.childNodes[i].innerHTML = `${className}: ${(probability * 100).toFixed(2)}%`;
+
+                if (probability > 0.9 && !isProcessing) {
+                    isProcessing = true;
+                    resultContainer.innerHTML = `
+                        <div class="success">
+                            <p>Hello, <b>${className}</b>! 🎉</p>
+                            <p>Welcome back! Your presence has been recorded.</p>
+                        </div>
+                    `;
+                    setTimeout(() => {
+                        resultContainer.innerHTML = "";
+                        isProcessing = false;
+                    }, 5000);
+                    return;
+                }
+            }
+
+            if (!isProcessing) {
+                resultContainer.innerHTML = `
+                    <div class="error">
+                        <p>Oops! Face not recognized.</p>
+                        <p>Please try again or contact the administrator.</p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    resultContainer.innerHTML = "";
+                    isProcessing = false;
+                }, 5000);
+            }
+        }
+    </script>
+    
+</body>
+</html>
